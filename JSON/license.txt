@@ -1,0 +1,2 @@
+Stolen from JsonCpp
+http://jsoncpp.sourceforge.net/
