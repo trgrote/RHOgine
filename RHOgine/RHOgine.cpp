@@ -1,8 +1,16 @@
 #include "RHOgine.h"
 #include <cassert>
 #include <cstdio>
+#include <string>       // std::string
+#include <iostream>     // std::cout
+#include <sstream>
 
 #include "defines.h"
+
+// 10 Frames per cycle
+#define FRAMES_PER_CYCLE 		20
+#define FONT_NAME				"sansation.ttf"
+#define FONT_SIZE  				20
 
 using namespace rho;
 
@@ -21,7 +29,12 @@ cRHOgine::cRHOgine()
 	m_windowConfig.windowWidth = 800;
 	m_windowConfig.windowHeight = 600;
 	m_windowConfig.windowTitle = "RHOgine Game";
-	m_windowConfig.frameLimit = 60;
+	m_windowConfig.frameLimit = 120;
+
+	m_cycleTotal = 0;
+	m_framesInCycle = 0;
+	m_frameRate = 0;
+	m_bFrameRateDisplayON = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,10 +66,18 @@ int cRHOgine::Initialize()
 	m_pConsole->addCommand( new commands::EchoCommand() );
 	m_pConsole->addCommand( new commands::ExitCommand(m_window) );
 	m_pConsole->addCommand( new commands::LuaDofileCommand(m_pLua) );
+	m_pConsole->addCommand( new commands::ToggleFPSCommand() );
 
 	m_input.getCOR().addInputHandler(m_pConsole.get(), true);     // Place Console on top of the chain of responsibility
 
 	LoadLua();
+
+	// Load Font
+	m_fpsFont.loadFromFile( FONT_NAME );
+	m_fpsText.setFont( m_fpsFont );
+	m_fpsText.setCharacterSize( FONT_SIZE );
+	m_fpsText.setColor( sf::Color::White );
+	m_fpsText.setPosition( 5, 5 );
 
 	return true;
 }
@@ -116,6 +137,18 @@ void cRHOgine::run()
 		// Get elapsed time since tast restart
 		m_elapsedTime = clock.restart();		// is it really that time, again?
 
+		// Calculate Average Framerate
+		m_cycleTotal += m_elapsedTime.asSeconds();
+		++m_framesInCycle;
+
+		if ( m_framesInCycle >= FRAMES_PER_CYCLE )
+		{
+			m_frameRate = 1 / ( m_cycleTotal / (float) m_framesInCycle );
+			m_framesInCycle = 0;
+			m_cycleTotal = 0;
+			// std::cout << "Frame Rate: " << m_frameRate << std::endl;
+		}
+
 		update( m_elapsedTime );             	// Update Game and Scene
 
 		beginDraw();                            // Clear the Buffer
@@ -170,6 +203,14 @@ void cRHOgine::endDraw()
 	// Draw Console
 	m_window.setView(m_window.getDefaultView());
 	m_window.draw(*m_pConsole);
+
+	if ( m_bFrameRateDisplayON )
+	{
+		std::stringstream fps_string;
+		fps_string << "FPS: " << m_frameRate;
+		m_fpsText.setString(fps_string.str());
+		m_window.draw( m_fpsText );
+	}
 
 	m_window.display();	// Swappin' Buffers
 }

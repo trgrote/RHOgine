@@ -371,7 +371,6 @@ void BaseConsole::processBuffer( std::string const & buffer )
 		output += "What the fuck are you talking about?\n";
 	}
 
-    std::cout << buffer << std::endl;
 	logMessage( output );
 }
 

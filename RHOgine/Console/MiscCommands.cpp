@@ -1,5 +1,7 @@
 #include "MiscCommands.h"
 
+#include "../RHOgine.h"
+
 using namespace rho;
 using namespace commands;
 
@@ -54,6 +56,35 @@ std::string EchoCommand::execute( std::list< std::string > const & arg_list )
 	{
 		output += (*iter);
 		output += " ";
+	}
+
+	return output;
+}
+
+// toggle Frame rate command
+// Echo Command
+
+std::string ToggleFPSCommand::getName() const
+{
+	return "toggleFPS";
+}
+
+std::string ToggleFPSCommand::getDescription() const
+{
+	return "Toggle On/Off the Framerate counter";
+}
+
+std::string ToggleFPSCommand::execute( std::list< std::string > const & arg_list )
+{
+	std::string output;
+
+	if ( rho::cRHOgine::GetInstance().toggleFPSDisplay() )
+	{
+		output = "FPS Counter ON";
+	}
+	else
+	{
+		output = "FPS Counter OFF";
 	}
 
 	return output;

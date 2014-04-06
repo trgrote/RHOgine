@@ -34,6 +34,16 @@ public:
     virtual std::string execute( std::list< std::string > const & arg_list );
 };
 
+/// Command that just echos all the arguments given to it
+class ToggleFPSCommand : public rho::IConsoleCommand
+{
+public:
+    virtual std::string getName() const;
+
+    virtual std::string getDescription() const;
+    virtual std::string execute( std::list< std::string > const & arg_list );
+};
+
 }
 
 }

@@ -89,6 +89,17 @@ protected:
 	/// Config Settings, used during Initialize.
 	/// can be modified during ctor to change window settings
 	cRHOgineConfig m_windowConfig;
+	
+	// Average Framerate Counting
+	// Find average elapsed time based off previous 10 frame increment
+	float m_cycleTotal;		// Sum of all elapsed times in the current framerate calculating cycle
+	int m_framesInCycle;
+	float m_frameRate;		// Average Framerate
+	bool m_bFrameRateDisplayON;
+	sf::Text m_fpsText;
+	sf::Font m_fpsFont;
+	// static float const s_kFramesPerCycle;
+	//
 
 	// Protec Default cstor for inherited games
 	cRHOgine();
@@ -195,6 +206,9 @@ public:
 	  *	\author Taylor Grote
 	  */
 	inline sf::Time const & getElapsedTime() const { return m_elapsedTime; }
+	
+	inline float const & getAverageFramerate() const { return m_frameRate; }
+	inline bool const & toggleFPSDisplay() { return m_bFrameRateDisplayON = !m_bFrameRateDisplayON; }
 };
 
 } 	// namepace rho
