@@ -16,10 +16,16 @@ static int l_draw( lua_State * lua )
 
     auto render_state = sf::RenderStates::Default;
 
-    if ( lua_gettop(lua) == 3 )
+	// Third Argument is blend mode
+    if ( lua_gettop(lua) >= 3 )
     {
         render_state.blendMode = static_cast<sf::BlendMode>(luaL_checkinteger(lua, 3));
-        p_render_target->draw( *p_drawable, render_state );
+    }
+	
+	// 4th Argument is a shader pointer
+	if ( lua_gettop(lua) >= 4 )
+    {
+        render_state.shader = static_cast<sf::Shader*>(lua::checklightuserdata(lua, 4));
     }
 
 	lua::pop_all( lua );

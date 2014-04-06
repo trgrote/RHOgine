@@ -107,6 +107,7 @@ void cRHOgine::LoadLua()
 	rho::lua::registerDrawableRect( m_pLua );
 	rho::lua::registerText( m_pLua );
 	rho::lua::registerSpine( m_pLua );
+	rho::lua::registerLuaShader( m_pLua );
 }
 
 ///////////////////////////////////////////////////////////////////////////////

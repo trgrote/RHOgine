@@ -21,5 +21,6 @@
 #include "Script/LuaText.h"
 #include "Script/LuaWindow.h"
 #include "Script/LuaSpine.h"
+#include "Script/LuaShader.h"
 
 #endif
