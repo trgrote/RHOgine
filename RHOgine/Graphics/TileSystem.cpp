@@ -244,7 +244,7 @@ void TileLayer::buildSpritesFromTileSet( rho::TextureManager & texture_manager )
 	for ( TileLayerInfo::TileSetInfo_ const & tile_set : m_tileLayerInfo.tileSets )
 	{
 		// Load Texture
-		rho::pTexture texture = texture_manager.getTexture( rho::HashString( tile_set.textureName ) );
+		rho::pTexture texture = texture_manager.getTexture( HashString( tile_set.textureName ) );
 
 		// Assert if the dimensions don't match
 		sf::Vector2u size = texture->getSize();
@@ -626,7 +626,7 @@ void TileLayer::draw( sf::RenderTarget &target, sf::RenderStates states ) const
 	// // tileSheet
 	// if ( root["tileSheet"].isString() )
 	// {
-		// rval.tileSheet = rho::HashString( root["tileSheet"].asString() );
+		// rval.tileSheet = HashString( root["tileSheet"].asString() );
 	// }
 	// else
 	// {
@@ -732,7 +732,7 @@ void TileLayer::draw( sf::RenderTarget &target, sf::RenderStates states ) const
 		// // file name
 		// if ( tile_set[ "image" ].isString() )
 		// {
-			// set_info.tileSheet = rho::HashString( tile_set[ "image" ].asString() );
+			// set_info.tileSheet = HashString( tile_set[ "image" ].asString() );
 		// }
 		// else
 		// {

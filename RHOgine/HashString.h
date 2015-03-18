@@ -5,9 +5,6 @@
 #include <functional>
 #include <map>
 
-namespace rho
-{
-
 /// Unique String Identifier
 typedef unsigned int StringID;
 
@@ -104,12 +101,17 @@ public:
 	
 	static std::map< StringID, std::string const > getInternMap() { return *s_internedStrings; }
 
+	// Const
+	static HashString const s_kEmptyString;
+
 // # End of Static Region
 
 private:
 
     /// Iterator to the position of this entry in the map
     InternStringMapConstIter m_mapPosition;
+
+    StringID m_hashValue;
 
 public:
 
@@ -150,19 +152,19 @@ public:
 	/// Equality operator ( uses m_hashValue )
 	bool operator== ( HashString const & other ) const;
 	bool operator!= ( HashString const & other ) const;
-
 	bool operator== ( std::string const & other ) const;
 	bool operator!= ( std::string const & other ) const;
 	bool operator== ( StringID const & other ) const;
 	bool operator!= ( StringID const & other ) const;
+	bool operator<  ( StringID const & other ) const;
 
-	bool operator< ( StringID const & other ) const;
-
-//    operator StringID const & () const;
-
-	// Const
-	static HashString const s_kEmptyString;
 };
+
+/// Returns string hash value
+inline StringID HashString::getHashValue() const
+{
+	return m_hashValue;
+}
 
 /// This class is used for the static member initilization
 static class HashStringInitilizer
@@ -173,7 +175,5 @@ public:
 
     static int getSchwarz();
 } initializer;
-
-};
 
 #endif
