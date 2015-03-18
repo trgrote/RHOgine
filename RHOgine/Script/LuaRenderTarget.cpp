@@ -4,6 +4,19 @@
 
 using namespace rho;
 
+static sf::BlendMode getBlendMode( int const & blend_mode )
+{
+	if ( blend_mode == 0 )
+		return sf::BlendNone;
+	if ( blend_mode == 1 )
+		return sf::BlendAdd;
+	if ( blend_mode == 2 )
+		return sf::BlendAlpha;
+	if ( blend_mode == 3 )
+		return sf::BlendMultiply;
+	return sf::BlendNone;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 
 static int l_draw( lua_State * lua )
@@ -19,7 +32,7 @@ static int l_draw( lua_State * lua )
 	// Third Argument is blend mode
     if ( lua_gettop(lua) >= 3 )
     {
-        render_state.blendMode = static_cast<sf::BlendMode>(luaL_checkinteger(lua, 3));
+        render_state.blendMode = getBlendMode(luaL_checkinteger(lua, 3));
     }
 	
 	// 4th Argument is a shader pointer
@@ -63,19 +76,19 @@ void lua::registerRenderTarget( lua_State * lua )
 	}
 
 	lua_pushstring( lua, "None" );
-    lua_pushinteger( lua, sf::BlendMode::BlendNone );
+    lua_pushinteger( lua, 0 );		// BlendNone = 0
     lua_settable ( lua, -3 );
 
     lua_pushstring( lua, "Add" );
-    lua_pushinteger( lua, sf::BlendMode::BlendAdd );
+    lua_pushinteger( lua, 1 );		// BlendAdd = 1
     lua_settable ( lua, -3 );
 
     lua_pushstring( lua, "Alpha" );
-    lua_pushinteger( lua, sf::BlendMode::BlendAlpha );
+    lua_pushinteger( lua, 2 );		// BlendAlpha = 2
     lua_settable ( lua, -3 );
 
     lua_pushstring( lua, "Multiply" );
-    lua_pushinteger( lua, sf::BlendMode::BlendMultiply );
+    lua_pushinteger( lua, 3 );	// BlendMultiply = 3
     lua_settable ( lua, -3 );
 
     lua_pop(lua, 1);

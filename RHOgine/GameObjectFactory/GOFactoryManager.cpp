@@ -122,3 +122,16 @@ bool GOFactoryManager::loadObjectFactoriesFromJSON( char const * const json_file
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
+bool GOFactoryManager::loadLuaObjectFactory( HashString const & object_name, HashString const & script_name )
+{
+	LuaGameObjectInfo info;
+	info.name = object_name;
+	info.scripts.push_back( script_name );
+	
+	addFactory( new LuaGameObjectFactory( info ) );
+	
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////

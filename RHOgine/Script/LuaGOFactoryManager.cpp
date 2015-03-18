@@ -27,9 +27,29 @@ static int l_loadObjectFactoriesFromJSON( lua_State * lua )
 
 ///////////////////////////////////////////////////////////////////////////////
 
+static int l_loadLuaObjectFactory( lua_State * lua )
+{
+	HashString object_name, script_name;
+	
+	object_name = lua::chechHashString( lua, 1 );
+	script_name = lua::chechHashString( lua, 2 );
+	
+	lua::pop_all( lua );
+	
+	lua_pushboolean( 
+		lua, 
+		GOFactoryManager::GetInstance().loadLuaObjectFactory( object_name, script_name ) 
+	);
+	
+	return 1;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 static luaL_Reg const gof_man_functions [] =
 {
     { "loadObjectFactoriesFromJSON",        l_loadObjectFactoriesFromJSON },
+    { "loadLuaObjectFactory",        		l_loadLuaObjectFactory },
     { NULL, NULL }
 };
 

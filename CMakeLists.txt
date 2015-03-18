@@ -22,6 +22,10 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     set(WINDOWS 1)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(LINUX 1)
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+	set(MAC 1)
+	message(FATAL_ERROR "MAC NOT SUPPORTED YET operating system")
+    return()
 else()
     message(FATAL_ERROR "Unsupported operating system")
     return()
@@ -104,6 +108,7 @@ file(GLOB spine_source_files
 
 # SFML Source Directory
 set( SFML_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/SFML" CACHE STRING "SFML Source Directory( expecting 'include' subdir)" )
+set( SFML_EXTERNAL_LIBS_DIR "${SFML_SRC_DIR}/extlibs/libs-mingw/x86" CACHE STRING "SFML External Libs Directory" )
 
 # Include SFML
 include_directories(
@@ -113,6 +118,8 @@ include_directories(
 LINK_DIRECTORIES( ${CMAKE_BINARY_DIR} )
 
 LINK_DIRECTORIES( ${SFML_BUILD_DIR}/lib )
+
+LINK_DIRECTORIES( ${SFML_EXTERNAL_LIBS_DIR} )
 
 # add_subdirectory( Lua )
 # add_subdirectory( JSON )
@@ -158,7 +165,15 @@ if ( ${BUILD_TEST_EXECUTABLE} )
 			sfml-window-s-d
 			sfml-system-s-d
 			sfml-main-d
+			ws2_32
+			sndfile
+			openal32
+			glew
+			freetype
+			jpeg
 			${OPENGL_LIBRARIES}
+			gdi32
+			winmm
 		)
 	endif( WINDOWS )
 

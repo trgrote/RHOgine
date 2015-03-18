@@ -34,6 +34,7 @@ public:
 
 	bool loadObjectFactoriesFromJSON( char const * const json_file_name );
 	
+	bool loadLuaObjectFactory( HashString const & object_name, HashString const & script_name );
 	
 	/// \brief Adds a Registers a new Factory for making gameobjects
 	/// If factory of the same type already exists, the old factory

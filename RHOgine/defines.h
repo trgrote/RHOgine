@@ -42,8 +42,8 @@
     }\
     } while(0)
 #else
-    #define assert_msg( cond, msg )         ((void)0)
-    #define xassert_msg( cond, msg, ... )   ((void)0)
+    #define assert_msg( cond, msg )         (cond)
+    #define xassert_msg( cond, msg, ... )   (cond)
 #endif
 
 void printStack();

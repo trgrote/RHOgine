@@ -75,6 +75,10 @@ static int l_createWindow( lua_State * lua )
             {
                 style = sf::Style::Fullscreen;
             }
+			else if ( strcmp(str_style, "SplashScreen" ) == 0 )
+			{
+				style = sf::Style::None;
+			}
             else
             {
                 // Include Warnings
