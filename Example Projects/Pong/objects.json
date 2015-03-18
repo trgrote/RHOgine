@@ -1,0 +1,11 @@
+{
+	"objects" : 
+	[
+		"objects/ball.json",
+		"objects/paddle.json",
+		"objects/ui.json",
+		"objects/background.json",
+		"objects/gameLogic.json",
+		"objects/mainMenu.json"
+	]
+}

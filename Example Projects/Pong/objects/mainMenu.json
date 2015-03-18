@@ -1,0 +1,7 @@
+{
+	"name" : "MainMenu",
+	"scripts" :
+	[
+		"scripts/mainMenu.lua"
+	]
+}

@@ -1,0 +1,15 @@
+{
+	"mixes" : 
+	[
+		{ 
+			"from" 		: "walk", 
+			"to" 		: "jump", 
+			"duration" 	: 0.2 
+		},
+		{ 
+			"from" 		: "jump", 
+			"to" 		: "walk", 
+			"duration" 	: 0.4 
+		}
+	]
+}

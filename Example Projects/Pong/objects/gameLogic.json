@@ -1,0 +1,7 @@
+{
+	"name" : "GameLogic",
+	"scripts" :
+	[
+		"scripts/gameLogic.lua"
+	]
+}

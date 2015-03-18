@@ -1,0 +1,7 @@
+{
+	"name" : "Paddle",
+	"scripts" :
+	[
+		"scripts/paddle.lua"
+	]
+}

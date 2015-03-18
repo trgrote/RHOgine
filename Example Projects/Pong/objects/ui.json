@@ -1,0 +1,7 @@
+{
+	"name" : "UI",
+	"scripts" :
+	[
+		"scripts/ui.lua"
+	]
+}

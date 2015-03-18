@@ -1,0 +1,7 @@
+{
+	"name" : "Background",
+	"scripts" :
+	[
+		"scripts/background.lua"
+	]
+}

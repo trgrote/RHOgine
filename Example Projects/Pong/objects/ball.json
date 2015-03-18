@@ -1,0 +1,7 @@
+{
+	"name" : "Ball",
+	"scripts" :
+	[
+		"scripts/ball.lua"
+	]
+}
