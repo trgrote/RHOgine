@@ -4,7 +4,7 @@ RHOgine
 RHO Industries C++ Game Engine
 
 How to Build
-=====
+====
 
 1. Run cmake on the SFML library. The destination directory doesn't matter, but is used later.  Change the following values from their default:
 	* BUILD_SHARED_LIBS to FALSE
@@ -34,8 +34,8 @@ How to Build
 	* shutdown()
 8. Look at the included example projects to see to make a game entirley in lua. To run these, simply copy the files mentioned above into the directory with main.lua and run RHOgineTest.exe.
 
-Extenral Libraries Used
-=====
+External Libraries Used
+====
 
 * SFML 2.2 https://github.com/LaurentGomila/SFML/tree/2.2
 * Spine https://github.com/EsotericSoftware/spine-runtimes
