@@ -29,10 +29,22 @@ How to Build
 6. These files need to be in the same directory for the RHOgine game to run.
 7. The game will look for a main.lua script, load the script, and run any global functions like:
 	* init()
-	* updated(dt)
+	* update(dt)
 	* draw(render_target)
 	* shutdown()
 8. Look at the included example projects to see to make a game entirley in lua. To run these, simply copy the files mentioned above into the directory with main.lua and run RHOgineTest.exe.
+
+Games Built with RHOgine
+====
+**Candy Pong**
+![Alt text](http://3.bp.blogspot.com/-YdviePCg7ZI/VOp3aMRX1wI/AAAAAAAAAAg/y6VMV7yMLXM/s1600/screenshot.png "Saga Panga")
+Simple Pong Game made for the Candy Jam 2014
+[Link](https://dl.dropboxusercontent.com/u/41080683/OldGames/PongCandy.zip)
+
+**RGBlaster**
+![Alt text](http://4.bp.blogspot.com/-GnnL-a2p9mU/VOp3etV1UzI/AAAAAAAAAAo/E5Q8OfGw1KY/s1600/screenshot.png "Saga Panga")
+Game built at the Games++ 2014 Game Jam:
+[Link](https://dl.dropboxusercontent.com/u/41080683/OldGames/GamesPP.zip)
 
 External Libraries Used
 ====
